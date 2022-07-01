@@ -4,6 +4,8 @@ import Header from "./Header";
 import HeroList, { HeroListItem } from "./HeroList";
 import Progress from "./Progress";
 
+import { FormatActions } from "../../actions/FormatActions";
+
 /* global Word, require */
 
 export interface AppProps {
@@ -16,8 +18,8 @@ export interface AppState {
 }
 
 export default class App extends React.Component<AppProps, AppState> {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props: AppProps | Readonly<AppProps>) {
+    super(props);
     this.state = {
       listItems: [],
     };
@@ -44,17 +46,8 @@ export default class App extends React.Component<AppProps, AppState> {
 
   click = async () => {
     return Word.run(async (context) => {
-      /**
-       * Insert your Word code here
-       */
-
-      // insert a paragraph at the end of the document.
-      const paragraph = context.document.body.insertParagraph("Hello World", Word.InsertLocation.end);
-
-      // change the paragraph color to blue.
-      paragraph.font.color = "blue";
-
-      await context.sync();
+      const actions = new FormatActions(context);
+      await actions.reset();
     });
   };
 
