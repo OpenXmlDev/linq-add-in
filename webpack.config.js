@@ -53,6 +53,12 @@ module.exports = async (env, options) => {
           use: "html-loader",
         },
         {
+          test: /\.m?js$/,
+          resolve: {
+            fullySpecified: false, // disable the behaviour
+          },
+        },
+        {
           test: /\.(png|jpg|jpeg|gif|ico)$/,
           type: "asset/resource",
           generator: {
