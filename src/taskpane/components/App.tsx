@@ -3,10 +3,9 @@ import { DefaultButton } from "@fluentui/react";
 import Header from "./Header";
 import HeroList, { HeroListItem } from "./HeroList";
 import Progress from "./Progress";
+import { transformSelection, removeDirectFormatting } from "../../actions";
 
-import { FormatActions } from "../../actions/FormatActions";
-
-/* global Word, require */
+/* global Word, console, require */
 
 export interface AppProps {
   title: string;
@@ -46,9 +45,14 @@ export default class App extends React.Component<AppProps, AppState> {
 
   click = async () => {
     return Word.run(async (context) => {
-      const actions = new FormatActions(context);
-      await actions.reset();
-    });
+      const success = await transformSelection(removeDirectFormatting, context);
+
+      // Certain selections (e.g., one or more table cells, one or more table rows)
+      // can't be transformed. Replacing the OOXML of the selected range with the
+      // transformed OOXML would mess up the selected range.
+      // In this simple example, we don't bother showing a dialog.
+      if (!success) console.log("The selected range can't be transformed.");
+    }).catch(console.error);
   };
 
   render() {
