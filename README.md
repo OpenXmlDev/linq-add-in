@@ -183,33 +183,3 @@ function runPropertiesTransformation(element: XElement): XElement | null {
   return null;
 }
 ```
-
-## Further Notes
-
-This JavaScript world is full of surprises.
-
-Webpack 5, which is used by the latest yeoman generator, introduced a breaking change. It now requires
-fully specified references to ES modules in the form of `import "./some/module.js"` instead of just
-`import "./some/module"`.
-
-The `@openxmldev/linq-to-xml` and `@openxmldev/linq-to-ooxml` packages are ES modules and, therefore,
-require an additional rule in the `webpack.config.js` file since they do not use fully specified
-references:
-
-```javascript
-const config = {
-  // ...
-  module: {
-    rules: [
-      // ...
-      {
-        test: /\.m?js$/,
-        resolve: {
-          fullySpecified: false, // disable the behaviour
-        },
-      },
-      // ...
-    ],
-    // ...
-}
-```

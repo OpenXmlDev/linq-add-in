@@ -27,8 +27,8 @@
   },
   "dependencies": {
     "@fluentui/react": "^8.52.3",
-    "@openxmldev/linq-to-ooxml": "^0.9.2",
-    "@openxmldev/linq-to-xml": "^0.9.1",
+    "@openxmldev/linq-to-ooxml": "^0.10.0",
+    "@openxmldev/linq-to-xml": "^0.10.0",
     "core-js": "^3.9.1",
     "es6-promise": "^4.2.8",
     "react": "^17.0.2",

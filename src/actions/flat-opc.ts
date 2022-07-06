@@ -1,6 +1,5 @@
 import { XElement } from "@openxmldev/linq-to-xml";
-import { W } from "@openxmldev/linq-to-ooxml";
-import { PKG } from "./PKG";
+import { PKG, W } from "@openxmldev/linq-to-ooxml";
 
 const mainContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml";
 
