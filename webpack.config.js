@@ -21,6 +21,7 @@ module.exports = async (env, options) => {
       polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
       vendor: ["react", "react-dom", "core-js", "@fluentui/react"],
       taskpane: ["react-hot-loader/patch", "./src/taskpane/index.tsx"],
+      messagebox: ["react-hot-loader/patch", "./src/dialogs/messagebox/index.tsx"],
       commands: "./src/commands/commands.ts",
     },
     output: {
@@ -85,6 +86,11 @@ module.exports = async (env, options) => {
         filename: "taskpane.html",
         template: "./src/taskpane/taskpane.html",
         chunks: ["taskpane", "vendor", "polyfills"],
+      }),
+      new HtmlWebpackPlugin({
+        filename: "messagebox.html",
+        template: "./src/dialogs/messagebox/messagebox.html",
+        chunks: ["messagebox", "vendor", "polyfills"],
       }),
       new HtmlWebpackPlugin({
         filename: "commands.html",

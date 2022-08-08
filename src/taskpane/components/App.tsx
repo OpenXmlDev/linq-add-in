@@ -3,7 +3,7 @@ import { DefaultButton } from "@fluentui/react";
 import Header from "./Header";
 import HeroList, { HeroListItem } from "./HeroList";
 import Progress from "./Progress";
-import { transformSelection, removeDirectFormatting } from "../../actions";
+import { transformSelection, removeDirectFormatting, openDialog } from "../../actions";
 
 /* global Word, console, require */
 
@@ -51,7 +51,15 @@ export default class App extends React.Component<AppProps, AppState> {
       // can't be transformed. Replacing the OOXML of the selected range with the
       // transformed OOXML would mess up the selected range.
       // In this simple example, we don't bother showing a dialog.
-      if (!success) console.log("The selected range can't be transformed.");
+      if (!success)
+        openDialog(
+          "messagebox.html",
+          {
+            headline: "Invalid Selection",
+            message: "The selected range can not be transformed.",
+          },
+          { height: 30, width: 30 }
+        );
     }).catch(console.error);
   };
 
